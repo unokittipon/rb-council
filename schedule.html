@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ตารางเรียน | Ratchaborikanukroh Student Council</title>
+<meta name="description" content="ตารางเรียนของแต่ละระดับชั้น เชื่อมต่อระบบตารางสอนอย่างเป็นทางการของโรงเรียนราชโบริกานุเคราะห์">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .grade-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .grade-card {
+    display:flex; flex-direction:column; align-items:flex-start;
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; box-shadow:var(--shadow-sm); transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .grade-card:hover { transform:translateY(-5px); box-shadow:var(--shadow); border-color:var(--lilac); }
+  .grade-num { font-family:var(--display); font-size:38px; color:var(--pink); line-height:1; margin-bottom:6px; }
+  .grade-card h3 { font-family:var(--head); font-weight:700; font-size:18px; color:var(--charcoal); margin-bottom:4px; }
+  .grade-card p { font-size:13px; color:var(--grey); margin-bottom:16px; }
+  .grade-card .go { font-family:var(--head); font-weight:600; font-size:14px; color:var(--pink-deep); margin-top:auto; }
+  .grade-card:hover .go { text-decoration:underline; }
+  .info-box {
+    background:var(--pink-soft); border-radius:var(--radius); padding:24px 26px;
+    display:flex; gap:16px; align-items:flex-start; margin-bottom:34px;
+  }
+  .info-box .ic { font-size:26px; line-height:1; }
+  .info-box b { font-family:var(--head); color:var(--charcoal); display:block; margin-bottom:4px; }
+  .info-box p { font-size:14px; color:var(--ink); margin:0; }
+  .other-links { display:flex; gap:12px; flex-wrap:wrap; margin-top:30px; }
+  @media (max-width:700px){ .grade-grid{ grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:480px){ .grade-grid{ grid-template-columns:1fr;} .info-box{flex-direction:column;} }
+</style>
+</head>
+<body>
+<div class="bg-grain"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><div class="brand-logo">RB</div><div class="brand-text"><b>สภานักเรียน</b><span>Ratchaborikanukroh Student Council</span></div></a>
+    <nav class="nav-links">
+      <a href="index.html">หน้าแรก</a><a href="council.html">สภานักเรียน</a><a href="hall-of-fame.html">Hall of Fame</a><a href="find-your-future.html">Find Your Future</a><a href="calendar.html">ปฏิทิน</a><a href="schedule.html">ตารางเรียน</a>
+    </nav>
+    <a href="calendar.html" class="nav-cta">ดูปฏิทิน</a>
+    <button class="burger" onclick="toggleMenu()" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">หน้าแรก</a><a href="council.html">สภานักเรียน</a><a href="hall-of-fame.html">Hall of Fame</a><a href="find-your-future.html">Find Your Future</a><a href="calendar.html">ปฏิทิน</a><a href="schedule.html">ตารางเรียน</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb reveal"><a href="index.html">หน้าแรก</a> / ตารางเรียน</div>
+    <h1 class="reveal">ตารางเรียน</h1>
+    <p class="reveal">เลือกระดับชั้นเพื่อเปิดตารางเรียนจริงจาก<strong>ระบบตารางสอนอย่างเป็นทางการ</strong>ของโรงเรียนราชโบริกานุเคราะห์ — ข้อมูลอัปเดตตรงจากทางโรงเรียนเสมอ</p>
+  </div>
+</section>
+
+<section style="padding-top:24px;">
+  <div class="wrap">
+    <div class="info-box reveal">
+      <div class="ic">📅</div>
+      <div>
+        <b>เชื่อมต่อกับระบบโรงเรียนโดยตรง</b>
+        <p>ปุ่มด้านล่างจะเปิดตารางเรียนของแต่ละชั้นจากระบบตารางสอนของโรงเรียน (เปิดในแท็บใหม่) — รวมถึงตารางผู้สอนและตารางห้องเรียนด้วย</p>
+      </div>
+    </div>
+
+    <div class="grade-grid">
+      <a href="http://122.154.66.194/ratb/index.php?src=student_1&clsid=7" target="_blank" rel="noopener" class="grade-card reveal"><div class="grade-num">ม.1</div><h3>มัธยมศึกษาปีที่ 1</h3><p>ตารางเรียนประจำสัปดาห์</p><span class="go">เปิดตาราง →</span></a>
+      <a href="http://122.154.66.194/ratb/index.php?src=student_1&clsid=8" target="_blank" rel="noopener" class="grade-card reveal"><div class="grade-num">ม.2</div><h3>มัธยมศึกษาปีที่ 2</h3><p>ตารางเรียนประจำสัปดาห์</p><span class="go">เปิดตาราง →</span></a>
+      <a href="http://122.154.66.194/ratb/index.php?src=student_1&clsid=9" target="_blank" rel="noopener" class="grade-card reveal"><div class="grade-num">ม.3</div><h3>มัธยมศึกษาปีที่ 3</h3><p>ตารางเรียนประจำสัปดาห์</p><span class="go">เปิดตาราง →</span></a>
+      <a href="http://122.154.66.194/ratb/index.php?src=student_1&clsid=10" target="_blank" rel="noopener" class="grade-card reveal"><div class="grade-num">ม.4</div><h3>มัธยมศึกษาปีที่ 4</h3><p>ตารางเรียนประจำสัปดาห์</p><span class="go">เปิดตาราง →</span></a>
+      <a href="http://122.154.66.194/ratb/index.php?src=student_1&clsid=11" target="_blank" rel="noopener" class="grade-card reveal"><div class="grade-num">ม.5</div><h3>มัธยมศึกษาปีที่ 5</h3><p>ตารางเรียนประจำสัปดาห์</p><span class="go">เปิดตาราง →</span></a>
+      <a href="http://122.154.66.194/ratb/index.php?src=student_1&clsid=12" target="_blank" rel="noopener" class="grade-card reveal"><div class="grade-num">ม.6</div><h3>มัธยมศึกษาปีที่ 6</h3><p>ตารางเรียนประจำสัปดาห์</p><span class="go">เปิดตาราง →</span></a>
+    </div>
+
+    <div class="other-links reveal">
+      <a href="http://122.154.66.194/ratb/index.php?src=student" target="_blank" rel="noopener" class="btn btn-ghost">ตารางนักเรียน (ทั้งหมด)</a>
+      <a href="http://122.154.66.194/ratb/index.php?src=teacher" target="_blank" rel="noopener" class="btn btn-ghost">ตารางผู้สอน</a>
+      <a href="http://122.154.66.194/ratb/index.php?src=place" target="_blank" rel="noopener" class="btn btn-ghost">ตารางสถานที่/ห้องเรียน</a>
+      <a href="http://122.154.66.194/ratb/" target="_blank" rel="noopener" class="btn btn-primary">เปิดระบบตารางสอนเต็มรูปแบบ →</a>
+    </div>
+
+    <p style="color:var(--grey);margin-top:26px;font-size:13px;" class="reveal">* ระบบตารางสอนนี้ดูแลโดยทางโรงเรียนราชโบริกานุเคราะห์ ตารางทั้งหมดเป็นข้อมูลทางการและอัปเดตโดยฝ่ายวิชาการ</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="f-brand"><div class="brand-logo">RB</div><b>สภานักเรียน</b></div><p>โรงเรียนราชโบริกานุเคราะห์ ราชบุรี — ร่วมสร้างโรงเรียนที่ดีกว่าไปด้วยกัน</p></div>
+      <div><h4>ลิงก์ด่วน</h4><a href="council.html">เกี่ยวกับสภา</a><a href="hall-of-fame.html">Hall of Fame</a><a href="find-your-future.html">Find Your Future</a><a href="calendar.html">ปฏิทิน</a><a href="schedule.html">ตารางเรียน</a></div>
+      <div><h4>ติดตามเรา</h4><a href="https://www.instagram.com/rb.spotlight/" target="_blank">Instagram: @rb.spotlight</a><a href="#">Facebook: สภานักเรียน RB</a></div>
+    </div>
+    <div class="footer-bottom">© 2569 สภานักเรียน โรงเรียนราชโบริกานุเคราะห์ — สงวนลิขสิทธิ์</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ปฏิทิน | Ratchaborikanukroh Student Council</title>
+<meta name="description" content="ปฏิทินวันสำคัญ วันสอบ เดดไลน์ TCAS และกิจกรรมโรงเรียนราชโบริกานุเคราะห์">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content:''; position:absolute; left:7px; top:6px; bottom:6px; width:2px; background:var(--line); }
+  .tl-item { position: relative; margin-bottom: 18px; }
+  .tl-item::before { content:''; position:absolute; left:-25px; top:24px; width:12px; height:12px; border-radius:50%; background:var(--pink); border:3px solid var(--paper); box-shadow:0 0 0 2px var(--pink-soft); }
+  .tl-item.done::before { background:var(--grey); box-shadow:0 0 0 2px var(--line); }
+  .pill-when { display:inline-block; font-family:var(--head); font-size:12px; font-weight:600; color:var(--pink-deep); background:var(--pink-soft); padding:3px 10px; border-radius:999px; }
+  .pill-when.soon { color:var(--gold-deep); background:#FFF1DC; }
+  .pill-when.past { color:var(--grey); background:var(--line); }
+</style>
+</head>
+<body>
+<div class="bg-grain"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><div class="brand-logo">RB</div><div class="brand-text"><b>สภานักเรียน</b><span>Ratchaborikanukroh Student Council</span></div></a>
+    <nav class="nav-links">
+      <a href="index.html">หน้าแรก</a><a href="council.html">สภานักเรียน</a><a href="hall-of-fame.html">Hall of Fame</a><a href="find-your-future.html">Find Your Future</a><a href="calendar.html">ปฏิทิน</a><a href="schedule.html">ตารางเรียน</a>
+    </nav>
+    <a href="https://student.mytcas.com" target="_blank" class="nav-cta">myTCAS</a>
+    <button class="burger" onclick="toggleMenu()" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">หน้าแรก</a><a href="council.html">สภานักเรียน</a><a href="hall-of-fame.html">Hall of Fame</a><a href="find-your-future.html">Find Your Future</a><a href="calendar.html">ปฏิทิน</a><a href="schedule.html">ตารางเรียน</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="crumb reveal"><a href="index.html">หน้าแรก</a> / ปฏิทิน</div>
+    <h1 class="reveal">ปฏิทินวันสำคัญ</h1>
+    <p class="reveal">รวมวันสอบ เดดไลน์ TCAS กิจกรรมโรงเรียน และวันหยุดที่ชาว RB ควรรู้ — อัปเดตตามประกาศของโรงเรียนและ ทปอ.</p>
+  </div>
+</section>
+
+<section style="padding-top:24px;">
+  <div class="wrap">
+    <div class="grid grid-2">
+      <!-- TCAS column -->
+      <div class="reveal">
+        <h2 style="font-family:var(--head);font-size:22px;margin-bottom:20px;color:var(--charcoal);">🎓 TCAS / สอบ / ทุน</h2>
+        <div class="timeline">
+          <div class="tl-item card"><span class="pill-when soon">อีก 4 วัน</span><h3 style="margin:10px 0 4px;font-family:var(--head);font-size:16px;">ประกาศผล TCAS รอบ 3 ครั้งที่ 2</h3><p style="font-size:13px;color:var(--grey);">26 พ.ค. 2569</p></div>
+          <div class="tl-item card"><span class="pill-when soon">อีก 6 วัน</span><h3 style="margin:10px 0 4px;font-family:var(--head);font-size:16px;">สมัคร TCAS รอบ 4 Direct Admission</h3><p style="font-size:13px;color:var(--grey);">28 พ.ค. – 14 มิ.ย. 2569</p></div>
+          <div class="tl-item card"><span class="pill-when">ติดตามประกาศ</span><h3 style="margin:10px 0 4px;font-family:var(--head);font-size:16px;">กยศ. ปีการศึกษา 2569</h3><p style="font-size:13px;color:var(--grey);">รอตรวจสอบวันตามประกาศ</p></div>
+          <div class="tl-item card done"><span class="pill-when past">ผ่านแล้ว</span><h3 style="margin:10px 0 4px;font-family:var(--head);font-size:16px;">ขอทบทวนผลคะแนน A-Level</h3><p style="font-size:13px;color:var(--grey);">21 – 27 เม.ย. 2569</p></div>
+        </div>
+      </div>
+      <!-- School column -->
+      <div class="reveal">
+        <h2 style="font-family:var(--head);font-size:22px;margin-bottom:20px;color:var(--charcoal);">🏫 กิจกรรมโรงเรียน</h2>
+        <div class="timeline">
+          <div class="tl-item card"><span class="pill-when">เร็ว ๆ นี้</span><h3 style="margin:10px 0 4px;font-family:var(--head);font-size:16px;">ค่ายผู้นำสภานักเรียน RB ครั้งที่ 1</h3><p style="font-size:13px;color:var(--grey);">รอประกาศวัน · หอประชุมโรงเรียน</p></div>
+          <div class="tl-item card done"><span class="pill-when past">ผ่านแล้ว</span><h3 style="margin:10px 0 4px;font-family:var(--head);font-size:16px;">ลงทะเบียนกิจกรรมชุมนุม</h3><p style="font-size:13px;color:var(--grey);">21 พ.ค. 2569 · คาบที่ 8</p></div>
+          <div class="tl-item card done"><span class="pill-when past">ผ่านแล้ว</span><h3 style="margin:10px 0 4px;font-family:var(--head);font-size:16px;">อบรมแกนนำสิ่งแวดล้อม</h3><p style="font-size:13px;color:var(--grey);">16 พ.ค. 2569</p></div>
+          <div class="tl-item card done"><span class="pill-when past">ผ่านแล้ว</span><h3 style="margin:10px 0 4px;font-family:var(--head);font-size:16px;">เปิดภาคเรียนที่ 1/2569</h3><p style="font-size:13px;color:var(--grey);">พฤษภาคม 2569</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="f-brand"><div class="brand-logo">RB</div><b>สภานักเรียน</b></div><p>โรงเรียนราชโบริกานุเคราะห์ ราชบุรี — ร่วมสร้างโรงเรียนที่ดีกว่าไปด้วยกัน</p></div>
+      <div><h4>ลิงก์ด่วน</h4><a href="council.html">เกี่ยวกับสภา</a><a href="hall-of-fame.html">Hall of Fame</a><a href="find-your-future.html">Find Your Future</a><a href="calendar.html">ปฏิทิน</a><a href="schedule.html">ตารางเรียน</a></div>
+      <div><h4>ติดตามเรา</h4><a href="https://www.instagram.com/rb.spotlight/" target="_blank">Instagram: @rb.spotlight</a><a href="#">Facebook: สภานักเรียน RB</a></div>
+    </div>
+    <div class="footer-bottom">© 2569 สภานักเรียน โรงเรียนราชโบริกานุเคราะห์ — สงวนลิขสิทธิ์</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
