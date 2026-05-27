@@ -140,9 +140,16 @@
   }
 
   function renderCards() {
-    const list = activeCat === 'ทั้งหมด'
+    const list = (activeCat === 'ทั้งหมด'
       ? allEntries
-      : allEntries.filter(e => e.category === activeCat);
+      : allEntries.filter(e => e.category === activeCat)
+    ).slice().sort((a, b) => {
+      const ya = parseInt(String(a.year).replace(/[^0-9]/g, ''), 10);
+      const yb = parseInt(String(b.year).replace(/[^0-9]/g, ''), 10);
+      const va = isNaN(ya) ? -Infinity : ya;
+      const vb = isNaN(yb) ? -Infinity : yb;
+      return vb - va;
+    });
 
     if (!list.length) {
       grid.innerHTML = '<div class="empty-note">ยังไม่มีรายชื่อในหมวดนี้</div>';
