@@ -15,32 +15,38 @@
   }
   .year-btn:hover { border-color:var(--pink); color:var(--pink-deep); }
   .year-btn.active { background:linear-gradient(135deg,var(--pink),var(--pink-deep)); color:#fff; border-color:transparent; box-shadow:var(--shadow-sm); }
-  .committee-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  /* grid-auto-rows: 1fr บังคับให้ทุกแถวสูงเท่ากันแน่นอน */
+  .committee-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; grid-auto-rows:1fr; }
   .member-card {
     position:relative; overflow:hidden;
     background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
     box-shadow:var(--shadow-sm);
     transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     display:flex; flex-direction:column;
+    height:100%;
   }
   .member-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--pink-soft); }
+  /* รูปใช้ padding-bottom trick (3:4 = 133.33%) เพื่อบังคับสูงเท่ากันเป๊ะทุก browser */
   .member-photo {
-    position:relative; width:100%; aspect-ratio:3/4;
+    position:relative; width:100%; padding-bottom:133.33%;
     background:linear-gradient(135deg, var(--pink-soft), var(--lilac));
-    display:flex; align-items:center; justify-content:center;
     overflow:hidden;
+    flex-shrink:0;
+  }
+  .member-photo img,
+  .member-photo .initials {
+    position:absolute; inset:0;
   }
   .member-photo img { width:100%; height:100%; object-fit:cover; display:block; }
   .member-photo .initials {
+    display:flex; align-items:center; justify-content:center;
     font-family:var(--display); font-size:48px; color:var(--pink-deep);
     opacity:.55; letter-spacing:1px;
   }
-  /* body มีความสูงคงที่ทุกใบ ทำให้การ์ดทั้งใบสูงเท่ากันแน่นอน */
   .member-body {
-    padding:14px 16px;
-    height:88px;
+    padding:14px 16px; height:88px; box-sizing:border-box;
     display:flex; flex-direction:column; justify-content:flex-start;
-    box-sizing:border-box;
+    flex-shrink:0;
   }
   .member-card .role {
     align-self:flex-start;
@@ -59,7 +65,7 @@
   }
   @media (max-width:480px){
     .committee-grid{ grid-template-columns:repeat(2,1fr); gap:10px; }
-    .member-body{ padding:10px 12px 12px; height:86px; }
+    .member-body{ padding:10px 12px; height:78px; }
     .member-card h3{ font-size:14px; }
     .member-photo .initials{ font-size:38px; }
     .member-card .role{ font-size:10px; padding:3px 8px; margin-bottom:6px; }
