@@ -4,8 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>สภานักเรียน | Ratchaborikanukroh Student Council</title>
-<meta name="description" content="ข้อมูลสภานักเรียนโรงเรียนราชโบริกานุเคราะห์ โครงสร้าง คณะกรรมการ และวิสัยทัศน์">
+<meta name="description" content="คณะกรรมการสภานักเรียนโรงเรียนราชโบริกานุเคราะห์ ตามปีการศึกษา">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  .year-row { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:30px; }
+  .year-btn {
+    font-family:var(--head); font-size:14px; font-weight:600;
+    padding:8px 18px; border-radius:999px; border:1px solid var(--line);
+    background:var(--white); color:var(--ink); cursor:pointer; transition:.18s;
+  }
+  .year-btn:hover { border-color:var(--pink); color:var(--pink-deep); }
+  .year-btn.active { background:linear-gradient(135deg,var(--pink),var(--pink-deep)); color:#fff; border-color:transparent; box-shadow:var(--shadow-sm); }
+  .committee-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .member-card {
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 20px; box-shadow:var(--shadow-sm); transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .member-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--pink-soft); }
+  .member-card .role {
+    display:inline-block; font-family:var(--head); font-size:11px; font-weight:600;
+    letter-spacing:.5px; text-transform:uppercase; color:var(--pink-deep);
+    background:var(--pink-soft); padding:4px 10px; border-radius:999px; margin-bottom:10px;
+  }
+  .member-card.lead .role { color:#fff; background:linear-gradient(135deg,var(--pink),var(--pink-deep)); }
+  .member-card h3 { font-family:var(--head); font-weight:700; font-size:17px; color:var(--charcoal); line-height:1.35; }
+  @media (max-width:880px){ .committee-grid{ grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:480px){
+    .committee-grid{ grid-template-columns:1fr; gap:10px; }
+    .member-card{ padding:14px 16px; }
+    .member-card h3{ font-size:15px; }
+  }
+</style>
 </head>
 <body>
 <div class="bg-grain"></div>
@@ -32,46 +61,14 @@
   <div class="wrap">
     <div class="crumb reveal"><a href="index.html">หน้าแรก</a> / สภานักเรียน</div>
     <h1 class="reveal">รู้จักสภานักเรียน RB</h1>
-    <p class="reveal">คณะกรรมการสภานักเรียนโรงเรียนราชโบริกานุเคราะห์ ทำหน้าที่เป็นตัวแทนของนักเรียนทุกคน ประสานกิจกรรม รับฟังเสียง และร่วมพัฒนาโรงเรียนให้ดียิ่งขึ้น</p>
+    <p class="reveal">รายชื่อคณะกรรมการสภานักเรียนโรงเรียนราชโบริกานุเคราะห์ — เลือกปีการศึกษาเพื่อดูคณะกรรมการชุดที่ต้องการ</p>
   </div>
 </section>
 
-<!-- VISION -->
-<section style="padding-top:24px;">
+<section style="padding-top:0;">
   <div class="wrap">
-    <div class="grid grid-3">
-      <div class="card reveal"><span class="tag">วิสัยทัศน์</span><h3>เป็นกระบอกเสียง</h3><p>เป็นตัวแทนรับฟังและสื่อสารความต้องการของนักเรียนสู่ทางโรงเรียนอย่างสร้างสรรค์</p></div>
-      <div class="card reveal"><span class="tag">พันธกิจ</span><h3>ประสานกิจกรรม</h3><p>วางแผนและจัดกิจกรรมที่ส่งเสริมการเรียนรู้ ความสามัคคี และความเป็นผู้นำ</p></div>
-      <div class="card reveal"><span class="tag">คุณค่า</span><h3>โปร่งใส มีส่วนร่วม</h3><p>ทำงานอย่างเปิดเผย รับฟังทุกความเห็น และเปิดพื้นที่ให้นักเรียนมีส่วนร่วม</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- COMMITTEE -->
-<section style="background:var(--pink-tint);">
-  <div class="wrap">
-    <div class="sec-head reveal"><div><h2>คณะกรรมการสภานักเรียน</h2><p>ชุดปีการศึกษา 2569</p></div></div>
-    <div class="grid grid-4">
-      <div class="card reveal"><h3>ชื่อ–สกุล</h3><p>ประธานสภานักเรียน</p></div>
-      <div class="card reveal"><h3>ชื่อ–สกุล</h3><p>รองประธานสภา</p></div>
-      <div class="card reveal"><h3>ชื่อ–สกุล</h3><p>เลขานุการ</p></div>
-      <div class="card reveal"><h3>ชื่อ–สกุล</h3><p>เหรัญญิก</p></div>
-      <div class="card reveal"><h3>ชื่อ–สกุล</h3><p>ฝ่ายกิจกรรม</p></div>
-      <div class="card reveal"><h3>ชื่อ–สกุล</h3><p>ฝ่ายประชาสัมพันธ์</p></div>
-      <div class="card reveal"><h3>ชื่อ–สกุล</h3><p>ฝ่ายวิชาการ</p></div>
-      <div class="card reveal"><h3>ชื่อ–สกุล</h3><p>ฝ่ายสารวัตรนักเรียน</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="sec-head reveal"><div><h2>มีเรื่องอยากให้สภาช่วยดูแลไหม</h2><p>แจ้งปัญหา เสนอไอเดีย หรือฝากความคิดเห็นถึงคณะกรรมการสภานักเรียนได้โดยตรง</p></div></div>
-    <div class="grid grid-2">
-      <div class="card reveal"><span class="tag">ช่องทางออนไลน์</span><h3>Instagram studentcouncil_rb</h3><p>ส่งข้อความถึงทีมสภาผ่าน DM หรือคอมเมนต์ใต้โพสต์ได้ทุกวัน</p></div>
-      <div class="card reveal"><span class="tag">ช่องทางที่โรงเรียน</span><h3>ห้องสำนักงานสภานักเรียน</h3><p>เข้ามาพูดคุยกับคณะกรรมการได้โดยตรงในเวลาพักกลางวัน</p></div>
-    </div>
+    <div class="year-row reveal" id="yearRow"></div>
+    <div class="committee-grid" id="committeeGrid"></div>
   </div>
 </section>
 
@@ -87,5 +84,78 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+(function () {
+  /* =========================================================
+     ข้อมูลคณะกรรมการสภานักเรียน แยกตามปีการศึกษา
+     เพิ่มปีใหม่: สร้าง key ใหม่เช่น '2570': [ ... ]
+     แล้วระบบจะเพิ่มปุ่มปีใหม่ให้อัตโนมัติ (ปีล่าสุดอยู่ซ้ายสุด)
+     ========================================================= */
+  const COMMITTEES = {
+    '2569': [
+      { role: 'ประธานสภานักเรียน',  name: 'นายกิจติภณ พฤกษ์ไพโรจน์กุล', lead: true },
+      { role: 'รองประธานสภา',       name: 'นายนภดล นิ่มน่วม',           lead: true },
+      { role: 'เลขานุการ',          name: 'นางสาวฆรวัณณ์ ลิ้มเรืองอนันต์' },
+      { role: 'เหรัญญิก',           name: 'นางสาวธนาภา กาสุวรรณ' },
+      { role: 'ฝ่ายวิชาการ',         name: 'นางสาววิสุดา รอดวินิจ' },
+      { role: 'ฝ่ายประชาสัมพันธ์',   name: 'นางสาวสุภาสินี จำปาอินทร์' },
+      { role: 'ฝ่ายระเบียบวินัย',    name: 'นางสาวบุณณดา พานิชสมัย' },
+      { role: 'ฝ่ายสิ่งแวดล้อม',     name: 'นางสาวจิณัฐตา ปี่ทอง' },
+      { role: 'ฝ่ายสวัสดิการ',       name: 'นางสาวณัฐนรี เพ็ชรมาศ' },
+      { role: 'ฝ่ายสถิติ',           name: 'นายชญานนท์ บุญช่วย' },
+      { role: 'ฝ่ายสถิติ',           name: 'นางสาวฐาภิตตา พึ่งโพธิ์ทอง' },
+      { role: 'ฝ่ายกีฬา',            name: 'นางสาวนันทนัช พวงทอง' },
+      { role: 'ฝ่ายกีฬา',            name: 'นายณัฐภัทร โมกแก้ว' },
+      { role: 'ฝ่ายเทคโนโลยี',       name: 'นางสาววรรณิษา พิงโคกกรวด' },
+      { role: 'ฝ่ายเทคโนโลยี',       name: 'นางสาวบัณฑิตา รามัญ' }
+    ]
+    /* ตัวอย่างเพิ่มปีใหม่:
+    , '2570': [
+      { role: 'ประธานสภานักเรียน', name: '...', lead: true }
+    ]
+    */
+  };
+
+  const yearRow = document.getElementById('yearRow');
+  const grid = document.getElementById('committeeGrid');
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function renderMembers(year) {
+    const list = COMMITTEES[year] || [];
+    grid.innerHTML = list.map(m => `
+      <div class="member-card${m.lead ? ' lead' : ''}">
+        <span class="role">${escapeHtml(m.role)}</span>
+        <h3>${escapeHtml(m.name)}</h3>
+      </div>
+    `).join('');
+    grid.querySelectorAll('.member-card').forEach(c => c.classList.add('reveal', 'in'));
+  }
+
+  const years = Object.keys(COMMITTEES).sort((a, b) => parseInt(b) - parseInt(a));
+  yearRow.innerHTML = years.map((y, i) =>
+    `<button class="year-btn${i === 0 ? ' active' : ''}" data-year="${y}">ปีการศึกษา ${y}</button>`
+  ).join('');
+
+  yearRow.querySelectorAll('.year-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      yearRow.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderMembers(btn.dataset.year);
+    });
+  });
+
+  if (years.length) renderMembers(years[0]);
+})();
+/*
+git add .
+git commit -m "edit concil file"
+git push
+*/
+</script>
 </body>
 </html>
