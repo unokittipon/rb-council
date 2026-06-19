@@ -203,8 +203,10 @@
   const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQtsxhWsNKA8uUKN3DDQlrm4KNbcfTjsFMhEkrflXOjLmh4PP8yrXidn-n-8ZUtTGSl_ADcKwKyX90_/pub?gid=0&single=true&output=csv';
   /* ============================================================ */
 
-  /* หมวดที่จะมีปุ่มกรอง (ปุ่ม "ทั้งหมด" เพิ่มอัตโนมัติ) */
-  const DEFAULT_CATEGORIES = ['วิชาการ', 'กิจกรรม', 'อาสา', 'อื่นๆ'];
+  /* หมวดที่จะมีปุ่มกรอง (ปุ่ม "ทั้งหมด" เพิ่มอัตโนมัติ)
+     เว้นว่างไว้ = ใช้หมวดที่มีจริงใน Sheet เท่านั้น
+     ถ้าอยากบังคับให้บางหมวดขึ้นเสมอ (แม้ยังไม่มี entry) ใส่ในนี้ได้ */
+  const DEFAULT_CATEGORIES = [];
 
   const filterRow = document.getElementById('filterRow');
   const list = document.getElementById('oppList');
