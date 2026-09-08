@@ -295,8 +295,15 @@
     return isNaN(d) ? null : d;
   }
 
-  function parseDateRange(e) {
-    const iso = String(e.date_iso || '').trim();
+  /* parseDateRange รองรับการเลือกคอลัมน์:
+     parseDateRange(e)                → ใช้ date + date_iso (backward compat)
+     parseDateRange(e, 'apply')       → ใช้ apply_date + apply_date_iso
+     parseDateRange(e, 'event')       → ใช้ event_date + event_date_iso */
+  function parseDateRange(e, prefix) {
+    const isoKey = prefix ? `${prefix}_date_iso` : 'date_iso';
+    const dateKey = prefix ? `${prefix}_date` : 'date';
+    /* fallback: ถ้าไม่มี apply_/event_ เฉพาะ ใช้ date/date_iso ปกติ */
+    const iso = String(e[isoKey] || (prefix ? e.date_iso : '') || '').trim();
     if (iso) {
       const parts = iso.split(/\s*[~]\s*/);
       const m1 = parts[0].match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);
@@ -310,7 +317,7 @@
         if (!isNaN(start)) return { start, end };
       }
     }
-    const raw = String(e.date || '').trim();
+    const raw = String(e[dateKey] || (prefix ? e.date : '') || '').trim();
     if (!raw) return null;
     const rangeParts = raw.split(/\s+[–-]\s+/);
     if (rangeParts.length === 1) {
@@ -356,8 +363,11 @@
   }
 
   function computeStatus(e) {
-    const range = parseDateRange(e);
-    if (!range) return { cls:'', label:'ติดตามประกาศ', days:null, range:null };
+    /* ใช้วันรับสมัครเป็นตัวคำนวณ pill (สำคัญกว่าวันจัดงาน) */
+    const applyRange = parseDateRange(e, 'apply');
+    const eventRange = parseDateRange(e, 'event');
+    const range = applyRange || parseDateRange(e) || eventRange;
+    if (!range) return { cls:'', label:'ติดตามประกาศ', days:null, range:null, applyRange, eventRange };
     const today = new Date(); today.setHours(0,0,0,0);
     const daysToStart = daysBetween(today, range.start);
     const daysToEnd = range.end ? daysBetween(today, range.end) : daysToStart;
@@ -373,7 +383,7 @@
     else if (daysToStart === 1) { cls = 'soon'; label = 'พรุ่งนี้'; }
     else if (daysToStart <= 30) { cls = 'soon'; label = `อีก ${daysToStart} วัน`; }
     else { cls = ''; label = `อีก ${daysToStart} วัน`; }
-    return { cls, label, days: sortDays, range };
+    return { cls, label, days: sortDays, range, applyRange, eventRange };
   }
 
   /* ========= render ========= */
@@ -413,8 +423,9 @@
     }
 
     list.innerHTML = sorted.map((e, idx) => {
-      const { cls, label, range } = e.__status;
-      const dateText = e.date || rangeToThai(range);
+      const { cls, label, range, applyRange } = e.__status;
+      /* แสดงวันรับสมัครก่อน (เพราะ pill นับจากวันรับสมัคร) */
+      const dateText = e.apply_date || rangeToThai(applyRange) || e.date || rangeToThai(range);
       return `
         <article class="opp-card ${cls === 'past' ? 'is-past' : ''}" data-idx="${idx}" tabindex="0" role="button" aria-label="ดูรายละเอียด ${escapeHtml(e.title)}">
           <div class="opp-main">
@@ -498,17 +509,28 @@
   const modalBody = document.getElementById('modalBody');
 
   function openModal(e) {
-    const { cls, label, range } = e.__status || {};
-    const dateText = e.date || rangeToThai(range);
+    const { cls, label, range, applyRange, eventRange } = e.__status || {};
+
+    /* วันรับสมัคร: ใช้ applyRange (จาก apply_date/apply_date_iso) ถ้ามี
+       ไม่งั้น fallback ไปที่ e.date/e.date_iso หลัก (backward compat) */
+    const applyText = e.apply_date || rangeToThai(applyRange) || e.date || rangeToThai(range);
+    /* วันจัดกิจกรรม: ใช้ eventRange เฉพาะถ้ามีข้อมูลใน column apply_ หรือ event_ */
+    const eventText = e.event_date || rangeToThai(eventRange);
+
     const req = e.requirement || e.requirements || e.qualification || e.qualifications || e['คุณสมบัติ'] || '';
     const fee = e.fee || e.cost || e.price || e['ค่าใช้จ่าย'] || '';
 
     const metaItems = [];
-    if (dateText || label) {
-      const dateBits = [];
-      if (label) dateBits.push(`<span class="pill-when ${cls||''}">${escapeHtml(label)}</span>`);
-      if (dateText) dateBits.push(`<span>${escapeHtml(dateText)}</span>`);
-      metaItems.push(`<div class="modal-meta-item date"><span class="label">วันที่</span><div class="val" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">${dateBits.join('')}</div></div>`);
+    /* วันรับสมัคร + pill */
+    if (applyText || label) {
+      const bits = [];
+      if (label) bits.push(`<span class="pill-when ${cls||''}">${escapeHtml(label)}</span>`);
+      if (applyText) bits.push(`<span>${escapeHtml(applyText)}</span>`);
+      metaItems.push(`<div class="modal-meta-item date"><span class="label">วันรับสมัคร</span><div class="val" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">${bits.join('')}</div></div>`);
+    }
+    /* วันจัดกิจกรรม — แสดงเฉพาะถ้ามีข้อมูล และต่างจากวันรับสมัคร */
+    if (eventText && eventText !== applyText) {
+      metaItems.push(`<div class="modal-meta-item date"><span class="label">วันจัดกิจกรรม</span><div class="val">${escapeHtml(eventText)}</div></div>`);
     }
     if (req) metaItems.push(`<div class="modal-meta-item"><span class="label">คุณสมบัติ</span><div class="val">${formatMultiline(req)}</div></div>`);
     if (fee) metaItems.push(`<div class="modal-meta-item fee"><span class="label">ค่าใช้จ่าย</span><div class="val">${formatMultiline(fee)}</div></div>`);
