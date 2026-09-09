@@ -262,7 +262,8 @@
     return isNaN(d) ? null : d;
   }
   function parseDateRange(e) {
-    const iso = String(e.date_iso || '').trim();
+    /* รองรับคอลัมน์ apply_date_iso / apply_date จาก FYF Sheet ใหม่ด้วย */
+    const iso = String(e.apply_date_iso || e.date_iso || '').trim();
     if (iso) {
       const parts = iso.split(/\s*[~]\s*/);
       const m1 = parts[0].match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);
@@ -276,7 +277,7 @@
         if (!isNaN(start)) return { start, end };
       }
     }
-    const raw = String(e.date || '').trim();
+    const raw = String(e.apply_date || e.date || '').trim();
     if (!raw) return null;
     const parts = raw.split(/\s+[–-]\s+/);
     if (parts.length === 1) {
@@ -406,7 +407,8 @@
       }
       grid.innerHTML = top.map(e => {
         const { cls, label, range } = e.__s;
-        const dateText = e.date || rangeToThai(range);
+        /* รองรับ apply_date (คอลัมน์ใหม่ใน FYF Sheet) เป็นหลัก */
+        const dateText = e.apply_date || e.date || rangeToThai(range);
         return `
           <a href="/find-your-future#${encodeURIComponent(e.title)}"
              class="card live-card reveal in">
